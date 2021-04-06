@@ -4,7 +4,7 @@
 Installing helm 3 has no difference from helm 2. It's still the same statically linked binary. It is enough just to download it and pass it in the $PATH or create a symbolic link in /usr/bin. For Ansible users was created a role that automates this process.
 
 
-<h1>Tiller removal
+<h1>Tiller removal<h1>
   
 You probably already know that helm 3 is tiller less. Indeed tiller is permanently and irrevocably removed. Now helm uses the Kubernetes API, using your credentials, which is undoubtedly more secure, but is it so convenient?
 
@@ -16,12 +16,12 @@ It is also worth mentioning that now the default repository for releases is Kube
 ```
 $export HELM_DRIVER=configmap
 ```
-<h1>Three-sided patch
+<h1>Three-sided patch<h1>
   
 What's really nice is that helm v3 now takes manual changes after the chart was installed. It means that if someone manually changed some parameter, helm 2 will not scratch during the update, if it has not changed relative to the saved state. Helm 3 will check if what it is asked to do matches what is in reality and in state. And this is very cool.
 
 
-<h1>Variable verification support
+<h1>Variable verification support<h1>
   
 Helm 3 provides the ability to define a schema for variables to notify the user if they are doing something that the chart developer did not expect. For example, you can specify which variables must be defined, what data type must be at the bottom, etc. For example, if you put the file "values.schema.json" in the directory with the chart with the following content
 ```
@@ -60,7 +60,7 @@ nginx:
 Of course, this function only works in helm v3, helm v2 simply ignores the schema.
 
 
-<h1>Docker Registry support
+<h1>Docker Registry support<h1>
   
 Helm 3 now has support for the docker registry. What does it mean? This means that you no longer need to search for yourself a separate helm repository such as ChartMuseum. ChartMuseum was a good option for centralized storage of charts, but it also served as an additional layer in your infrastructure, requiring updates, monitoring, access control, etc. Helm repository support from services such as Nexus, AWS, etc. never made it to the masses. Now you can store charts directly in docker repositories. This works great with vanilla Docker Registry or GitLab Registry, for example. People say they also push to GCR with no problem.
 How is it all done? First, you need to enable this feature explicitly, as it is still experimental in mid-2020. We do
